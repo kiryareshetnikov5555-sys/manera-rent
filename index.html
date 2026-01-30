@@ -3,118 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANERA RENT - Премиум аккаунты PUBG Mobile</title>
+    <title>MANERA RENT • Premium PUBG Accounts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Все предыдущие стили остаются... */
-        
-        /* Стили для премиум аккаунта */
-        .premium-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            z-index: 2;
-            border: 2px solid #000;
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #FFA500;
+            --black: #0A0A0A;
+            --dark-gray: #1A1A1A;
+            --gray: #2A2A2A;
+            --light-gray: #3A3A3A;
+            --white: #FFFFFF;
+            --red: #FF4757;
+            --green: #2ED573;
+            --blue: #1E90FF;
+            --purple: #8A2BE2;
         }
         
-        .premium-card {
-            border: 3px solid #FFD700 !important;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
-            position: relative;
-            overflow: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
         
-        .premium-card::before {
-            content: "";
-            position: absolute;
+        body {
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--gold); }
+            50% { text-shadow: 0 0 20px var(--gold), 0 0 30px var(--dark-gold); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Хедер */
+        .header {
+            position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
         }
         
-        .price-tag {
-            font-size: 32px;
-            color: #FFD700;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .features-list {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #444;
-        }
-        
-        .features-list ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .features-list li {
-            padding: 5px 0;
-            color: #ccc;
-            border-bottom: 1px dashed #444;
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .features-list li:before {
-            content: "✅";
-            margin-right: 10px;
-            color: #FFD700;
-        }
-        
-        /* Галерея изображений */
-        .gallery-section {
-            margin: 30px 0;
-            padding: 20px;
-            background: #1e1e1e;
-            border-radius: 12px;
-            border: 2px solid #333;
-        }
-        
-        .gallery-title {
-            color: #FFD700;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .logo {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
         
-        .gallery-item {
-            background: #2a2a2a;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #333;
-            transition: transform 0.3s;
-            height: 150px;
+        .logo-icon {
+            font-size: 32px;
+            color: var(--gold);
+            animation: glow 2s infinite;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--gold);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Герой секция */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(26,26,26,0.95) 100%),
+                        url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070') center/cover;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
+            padding-top: 100px;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-title {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--gold), #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: #ccc;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #aaa;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Аккаунты */
+        .section {
+            padding: 100px 40px;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 2px;
+        }
+        
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .account-card {
+            background: linear-gradient(145deg, var(--dark-gray), var(--gray));
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+            border: 1px solid var(--light-gray);
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .account-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: var(--gold);
+        }
+        
+        .account-card.premium {
+            border: 2px solid var(--gold);
+        }
+        
+        .account-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 2;
+        }
+        
+        .account-header {
+            padding: 30px 30px 0;
+        }
+        
+        .account-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .account-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .account-features {
+            padding: 0 30px;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        .feature-icon {
+            color: var(--gold);
+            font-size: 12px;
+        }
+        
+        .account-footer {
+            padding: 30px;
+            background: rgba(0,0,0,0.2);
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Премиум аккаунт */
+        .premium-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--dark-gray), var(--black));
+            border-radius: 30px;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.1);
+        }
+        
+        .premium-header {
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .premium-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+        
+        .premium-price {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--black);
+        }
+        
+        .premium-content {
+            padding: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: var(--gray);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .feature-card i {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
         
         .gallery-item:hover {
             transform: scale(1.05);
-            border-color: #FFD700;
         }
         
         .gallery-item img {
@@ -123,482 +429,665 @@
             object-fit: cover;
         }
         
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
+        /* Футер */
+        .footer {
+            background: var(--dark-gray);
+            padding: 80px 40px 40px;
+            border-top: 2px solid var(--gold);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+        }
+        
+        .footer-section h3 {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gray);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #333;
-            color: #888;
-            font-size: 14px;
-            text-align: center;
-            padding: 10px;
-        }
-        
-        /* Тарифы для аккаунта 132 */
-        .tariffs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .tariff-card {
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #333;
+            color: var(--gold);
+            font-size: 20px;
             transition: all 0.3s;
+            text-decoration: none;
         }
         
-        .tariff-card:hover {
-            border-color: #FFD700;
+        .social-icon:hover {
+            background: var(--gold);
+            color: var(--black);
             transform: translateY(-5px);
         }
         
-        .tariff-time {
-            color: #FFD700;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .tariff-price {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .tariff-currency {
-            color: #aaa;
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+            color: #888;
             font-size: 14px;
         }
         
-        .night-tariff {
-            background: linear-gradient(135deg, #1a2b3c 0%, #2c3e50 100%);
-            border-color: #3498db;
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
         
-        .night-tariff .tariff-time {
-            color: #3498db;
+        .modal-content {
+            background: var(--dark-gray);
+            border-radius: 25px;
+            max-width: 500px;
+            width: 100%;
+            border: 2px solid var(--gold);
+            animation: fadeIn 0.3s ease-out;
+            position: relative;
         }
         
-        /* Кнопка покупки */
-        .buy-btn {
+        .modal-header {
+            padding: 30px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 23px 23px 0 0;
+        }
+        
+        .modal-header h2 {
+            color: var(--black);
+            font-size: 32px;
+            font-weight: 900;
+        }
+        
+        .modal-body {
+            padding: 40px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--black);
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .form-control {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: var(--gray);
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
         
-        .buy-btn:hover {
-            background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
         }
         
-        /* Иконки особенностей */
-        .feature-icons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
+        /* Адаптив */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 48px; }
+            .section-title { font-size: 36px; }
+            .nav-links { gap: 20px; }
         }
         
-        .feature-icon {
-            background: #333;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #FFD700;
-            border: 1px solid #444;
-        }
-        
-        /* Разделитель */
-        .section-divider {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #FFD700, transparent);
-            margin: 40px 0;
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .section { padding: 60px 20px; }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 18px; }
+            .hero-stats { flex-direction: column; gap: 30px; }
+            .accounts-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Весь предыдущий код остается до секции со статусами -->
-    
-    <!-- ДОБАВЛЯЕМ ПРЕМИУМ АККАУНТ -->
-    <section class="status-table">
-        <div class="container">
-            <h2 class="status-title">💎 ПРЕМИУМ АККАУНТ ДЛЯ ПОКУПКИ</h2>
+    <!-- Хедер -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🎮</div>
+                <div class="logo-text">MANERA RENT</div>
+            </div>
             
-            <div class="account-card premium-card">
-                <div class="premium-badge">НА ПРОДАЖУ</div>
-                
-                <div class="account-card-header">
-                    <div class="account-number" style="font-size: 24px;">👑 УНИКАЛЬНЫЙ АККАУНТ</div>
-                    <span class="account-status status-free">Доступен</span>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link">Главная</a>
+                <a href="#accounts" class="nav-link">Аккаунты</a>
+                <a href="#premium" class="nav-link">Premium</a>
+                <a href="#status" class="nav-link">Статусы</a>
+            </nav>
+            
+            <a href="https://t.me/+_9dX3xygin01ODUy" target="_blank" class="nav-cta">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">PREMIUM PUBG ACCOUNTS</h1>
+            <p class="hero-subtitle">Аренда эксклюзивных аккаунтов PUBG Mobile с полной коллекцией скинов, легендарными рангами и уникальными предметами</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">7000+</div>
+                    <div class="stat-label">Отзывов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Аккаунтов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Надёжность</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Аккаунты для аренды -->
+    <section class="section" id="accounts">
+        <h2 class="section-title">ПОПУЛЯРНЫЕ АККАУНТЫ</h2>
+        
+        <div class="accounts-grid">
+            <!-- Аккаунт 1 -->
+            <div class="account-card">
+                <div class="account-badge">Conqueror</div>
+                <div class="account-header">
+                    <h3 class="account-title">🔥 LEGENDARY</h3>
+                    <div class="account-price">500₽ <span style="font-size: 16px; color: #ccc;">/ день</span></div>
                 </div>
                 
-                <div class="price-tag">89.999 ₽</div>
-                
-                <div class="feature-icons">
-                    <span class="feature-icon">🎮 Завоеватель S8</span>
-                    <span class="feature-icon">💎 165+ мифических</span>
-                    <span class="feature-icon">🏆 2+ золотых</span>
-                    <span class="feature-icon">✨ Миф лобби</span>
-                </div>
-                
-                <div class="features-list">
-                    <ul>
-                        <li>Более 165 мифических предметов</li>
-                        <li>Более 2 золотых предметов</li>
-                        <li>1 мифическое лобби (навсегда)</li>
-                        <li>Завоеватель S8</li>
-                        <li>Редчайшие рамки и аватарки</li>
-                        <li>Х-костюм «Фараон» - 6 уровень</li>
-                        <li>Миф костюм «Воин чести»</li>
-                        <li>Миф костюм «Лорд моря»</li>
-                        <li>Миф костюм «Полевой командир»</li>
-                        <li>Миф костюм «Леди» + стойка</li>
-                        <li>Миф костюм «Разбег»</li>
-                        <li>Миф костюм «Защитник Гэмбу»</li>
-                        <li>Миф костюм «Бодибилдинг»</li>
-                        <li>Миф костюм «Лазурный воитель»</li>
-                        <li>Миф костюм «Антиутопия»</li>
-                        <li>Миф костюм «Мумия»</li>
-                        <li>Full set «Черный»</li>
-                        <li>Full set «Голубой»</li>
-                        <li>Full set «Командир»</li>
-                        <li>Верх «Костлявый капитан»</li>
-                        <li>Верх «Градозащитник»</li>
-                        <li>Верх «Спортивный костюм»</li>
-                        <li>2 футболки «Godzilla»</li>
-                        <li>Низ «Фристайл»</li>
-                        <li>Миф рюкзак «Фараон»</li>
-                        <li>Рюкзак «Арбитр»</li>
-                        <li>Рюкзак «Вторжение»</li>
-                        <li>Рюкзак «Акула»</li>
-                        <li>Миф шлем «Инферно»</li>
-                        <li>Миф шлем «Изгоняющий духов»</li>
-                        <li>Редкий самолет «RE2»</li>
-                        <li>Редкая рамка «Родан»</li>
-                        <li>Редкие и олд аватарки</li>
-                        <li>2 - FULL Эмки</li>
-                        <li>30 - Чатов (11 - FULL)</li>
-                        <li>4 - Спорткара</li>
-                        <li>Полностью безопасный аккаунт✅</li>
+                <div class="account-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-crown feature-icon"></i> Ранг Conqueror S8
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-gem feature-icon"></i> 50+ мифических скинов
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-car feature-icon"></i> 4 спорткара
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-shield-alt feature-icon"></i> Полная защита
+                        </li>
                     </ul>
                 </div>
                 
-                <div class="gallery-section">
-                    <h3 class="gallery-title">📸 СКРИНШОТЫ АККАУНТА</h3>
-                    <div class="gallery-grid">
-                        <!-- Замените на реальные изображения -->
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                📱<br>Скриншот 1
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                🎮<br>Скриншот 2
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                💎<br>Скриншот 3
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                👑<br>Скриншот 4
-                            </div>
-                        </div>
-                    </div>
+                <div class="account-footer">
+                    <button class="btn btn-gold" onclick="openRentModal('LEGENDARY', 500)">
+                        <i class="fab fa-telegram"></i> АРЕНДОВАТЬ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Аккаунт 2 -->
+            <div class="account-card">
+                <div class="account-badge">Ace Dominator</div>
+                <div class="account-header">
+                    <h3 class="account-title">💎 MYTHIC PRO</h3>
+                    <div class="account-price">400₽ <span style="font-size: 16px; color: #ccc;">/ день</span></div>
                 </div>
                 
-                <div style="text-align: center; margin: 25px 0;">
-                    <p style="color: #aaa; font-style: italic;">
-                        По поводу покупки писать: @ManeraSale
-                    </p>
+                <div class="account-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-star feature-icon"></i> Ace Dominator
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-gem feature-icon"></i> 30+ мифических
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-tshirt feature-icon"></i> Полная коллекция
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-gamepad feature-icon"></i> Metro Royale
+                        </li>
+                    </ul>
                 </div>
                 
-                <button class="buy-btn" onclick="openPurchaseModal()">
-                    💰 КУПИТЬ АККАУНТ
-                </button>
+                <div class="account-footer">
+                    <button class="btn btn-gold" onclick="openRentModal('MYTHIC PRO', 400)">
+                        <i class="fab fa-telegram"></i> АРЕНДОВАТЬ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Аккаунт 3 -->
+            <div class="account-card">
+                <div class="account-badge">VIP</div>
+                <div class="account-header">
+                    <h3 class="account-title">⭐ VIP COLLECTION</h3>
+                    <div class="account-price">300₽ <span style="font-size: 16px; color: #ccc;">/ день</span></div>
+                </div>
+                
+                <div class="account-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-crown feature-icon"></i> Ранг Crown
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-gem feature-icon"></i> 15+ мифических
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-robot feature-icon"></i> 2 FULL эмки
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-bolt feature-icon"></i> Быстрый доступ
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="account-footer">
+                    <button class="btn btn-gold" onclick="openRentModal('VIP COLLECTION', 300)">
+                        <i class="fab fa-telegram"></i> АРЕНДОВАТЬ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Премиум аккаунт для продажи -->
+    <section class="section" id="premium">
+        <h2 class="section-title">👑 ПРЕМИУМ КОЛЛЕКЦИЯ</h2>
+        
+        <div class="premium-showcase">
+            <div class="premium-header">
+                <h2 class="premium-title">ULTIMATE COLLECTOR</h2>
+                <div class="premium-price">89.999₽</div>
             </div>
             
-            <div class="section-divider"></div>
-            
-            <!-- АККАУНТ №132 ДЛЯ АРЕНДЫ -->
-            <h2 class="status-title">🎯 АККАУНТ №132 ДЛЯ АРЕНДЫ</h2>
-            
-            <div class="account-card">
-                <div class="account-card-header">
-                    <div class="account-number">🎮 Номер 132</div>
-                    <span class="account-status status-free">Свободен</span>
+            <div class="premium-content">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-crown"></i>
+                        <h4>165+ Мифических</h4>
+                        <p>Полная коллекция мифических предметов</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-gem"></i>
+                        <h4>2+ Золотых</h4>
+                        <p>Эксклюзивные золотые предметы</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-home"></i>
+                        <h4>Миф Лобби</h4>
+                        <p>Уникальное лобби навсегда</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Завоеватель S8</h4>
+                        <p>Легендарный ранг сезона 8</p>
+                    </div>
                 </div>
                 
-                <div class="feature-icons">
-                    <span class="feature-icon">👕 Бригадная униформа</span>
-                    <span class="feature-icon">✨ 3 миф лобби</span>
-                    <span class="feature-icon">🚗 8 машинок</span>
-                    <span class="feature-icon">🎭 3 FULL Эмки</span>
-                </div>
-                
-                <div class="account-details">
-                    <strong>🔥 Особенности:</strong><br>
-                    • Бригадная униформа (белая)<br>
-                    • 3 миф лобби (навсегда)<br>
-                    • 2 пижамки<br>
-                    • Костюм пожарника<br>
-                    • Full set командира<br>
-                    • Штаны фристайло<br>
-                    • Миф шлем Инферно<br>
-                    • Топовые эмоции<br><br>
-                    
-                    <strong>🎮 METRO ROYALE:</strong><br>
-                    • Доступ: Есть✅<br>
-                    • Уровень: 12+✅<br><br>
-                    
-                    <strong>📊 Статистика:</strong><br>
-                    • 8 машинок (1 с дропом)<br>
-                    • 3 - FULL Эмки<br>
-                    • 35 - Чатов (10 - FULL, 3 - 6 LVL)<br>
-                    • Карты лобби - до 15 мая✅
-                </div>
-                
-                <h3 style="color: #FFD700; margin: 20px 0 10px; text-align: center;">⏰ ТАРИФЫ НА АРЕНДУ</h3>
-                
-                <div class="tariffs-grid">
-                    <div class="tariff-card">
-                        <div class="tariff-time">4 часа</div>
-                        <div class="tariff-price">249₽</div>
-                        <div class="tariff-currency">200грн</div>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <div style="background: #2A2A2A; height: 100%; display: flex; align-items: center; justify-content: center; color: #888;">
+                            <i class="fas fa-image fa-3x"></i>
+                        </div>
                     </div>
-                    
-                    <div class="tariff-card">
-                        <div class="tariff-time">6 часа</div>
-                        <div class="tariff-price">349₽</div>
-                        <div class="tariff-currency">265грн</div>
+                    <div class="gallery-item">
+                        <div style="background: #2A2A2A; height: 100%; display: flex; align-items: center; justify-content: center; color: #888;">
+                            <i class="fas fa-image fa-3x"></i>
+                        </div>
                     </div>
-                    
-                    <div class="tariff-card">
-                        <div class="tariff-time">12 часов</div>
-                        <div class="tariff-price">649₽</div>
-                        <div class="tariff-currency">500грн</div>
-                    </div>
-                    
-                    <div class="tariff-card">
-                        <div class="tariff-time">24 часа</div>
-                        <div class="tariff-price">899₽</div>
-                        <div class="tariff-currency">675грн</div>
-                    </div>
-                    
-                    <div class="tariff-card night-tariff">
-                        <div class="tariff-time">🌙 Ночной</div>
-                        <div class="tariff-price">399₽</div>
-                        <div class="tariff-currency">300грн</div>
-                        <div style="font-size: 12px; color: #aaa; margin-top: 5px;">
-                            21:00-10:00 МСК
+                    <div class="gallery-item">
+                        <div style="background: #2A2A2A; height: 100%; display: flex; align-items: center; justify-content: center; color: #888;">
+                            <i class="fas fa-image fa-3x"></i>
                         </div>
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin: 15px 0; color: #aaa; font-size: 14px;">
-                    💡 Смена Ника🃏 - 399₽
+                <button class="btn btn-gold" style="margin-top: 40px; padding: 20px; font-size: 20px;" onclick="openPurchaseModal()">
+                    <i class="fas fa-shopping-cart"></i> КУПИТЬ АККАУНТ
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Статусы -->
+    <section class="section" id="status">
+        <h2 class="section-title">📊 СТАТУСЫ АККАУНТОВ</h2>
+        
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="background: var(--dark-gray); border-radius: 20px; padding: 40px; border: 2px solid var(--light-gray);">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h3 style="color: var(--gold); font-size: 24px; margin-bottom: 10px;">Live Status Board</h3>
+                    <p style="color: #aaa;">Обновляется в реальном времени</p>
                 </div>
                 
-                <div class="gallery-section">
-                    <h3 class="gallery-title">📸 ФОТО АККАУНТА №132</h3>
-                    <div class="gallery-grid">
-                        <!-- Замените на реальные изображения аккаунта 132 -->
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                Добавить фото 1
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                Добавить фото 2
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                Добавить фото 3
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <a href="https://t.me/ManeraRentKatalog/132" target="_blank" 
-                               style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; 
-                                      background: #0088cc; color: white; text-decoration: none; font-weight: bold;">
-                                📱 Смотреть в Telegram
-                            </a>
-                        </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: var(--gray); padding: 20px; border-radius: 15px; text-align: center;">
+                        <div style="color: var(--green); font-size: 32px; font-weight: bold;">42</div>
+                        <div style="color: #aaa;">Свободно</div>
+                    </div>
+                    
+                    <div style="background: var(--gray); padding: 20px; border-radius: 15px; text-align: center;">
+                        <div style="color: var(--red); font-size: 32px; font-weight: bold;">18</div>
+                        <div style="color: #aaa;">Занято</div>
+                    </div>
+                    
+                    <div style="background: var(--gray); padding: 20px; border-radius: 15px; text-align: center;">
+                        <div style="color: var(--gold); font-size: 32px; font-weight: bold;">7</div>
+                        <div style="color: #aaa;">Бронь</div>
+                    </div>
+                    
+                    <div style="background: var(--gray); padding: 20px; border-radius: 15px; text-align: center;">
+                        <div style="color: var(--blue); font-size: 32px; font-weight: bold;">12</div>
+                        <div style="color: #aaa;">Metro Royale</div>
                     </div>
                 </div>
                 
-                <div class="account-links" style="margin: 20px 0;">
-                    <a href="https://t.me/ManeraSale?start=acc132_rent" target="_blank" 
-                       class="account-link-btn telegram-direct" style="flex: 1; text-align: center;">
-                        💬 Арендовать сейчас
+                <div style="margin-top: 40px; text-align: center;">
+                    <a href="https://t.me/ManeraRentKatalog" target="_blank" class="btn btn-gold" style="width: auto; padding: 15px 40px; display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-book-open"></i> ОТКРЫТЬ КАТАЛОГ
                     </a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Модальное окно для покупки -->
-    <div class="modal" id="purchaseModal">
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MANERA RENT</h3>
+                <p style="color: #aaa; line-height: 1.6;">Премиум аренда аккаунтов PUBG Mobile с 2020 года. Более 7000 довольных клиентов.</p>
+                
+                <div class="social-links">
+                    <a href="https://t.me/+_9dX3xygin01ODUy" target="_blank" class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://t.me/ManeraReview" target="_blank" class="social-icon">
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="https://t.me/ManeraSale" target="_blank" class="social-icon">
+                        <i class="fas fa-headset"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/ManeraRentKatalog"><i class="fas fa-folder"></i> Каталог аккаунтов</a></li>
+                    <li><a href="https://t.me/ManeraRentRules"><i class="fas fa-file-contract"></i> Правила аренды</a></li>
+                    <li><a href="https://t.me/ManeraReview"><i class="fas fa-comments"></i> Отзывы (7000+)</a></li>
+                    <li><a href="https://t.me/ManeraSale"><i class="fas fa-question-circle"></i> Поддержка</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/+_9dX3xygin01ODUy"><i class="fab fa-telegram"></i> Основной канал</a></li>
+                    <li><a href="https://t.me/ManeraSale"><i class="fas fa-shopping-cart"></i> Заказ аккаунтов</a></li>
+                    <li><a href="https://t.me/ManeraRentKatalog"><i class="fas fa-search"></i> Поиск по каталогу</a></li>
+                    <li><a href="#status"><i class="fas fa-chart-bar"></i> Статусы онлайн</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2024 MANERA RENT. Все права защищены.<br>
+            PUBG Mobile является зарегистрированной торговой маркой Krafton, Inc.
+        </div>
+    </footer>
+
+    <!-- Модальное окно аренды -->
+    <div class="modal" id="rentModal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closePurchaseModal()">&times;</span>
-            <h2>💰 ПОКУПКА ПРЕМИУМ АККАУНТА</h2>
-            
-            <div style="text-align: center; margin: 20px 0;">
-                <div style="font-size: 32px; color: #FFD700; font-weight: bold;">89.999 ₽</div>
-                <p style="color: #aaa; margin: 10px 0;">Уникальный аккаунт с полной коллекцией</p>
+            <button class="close-modal" onclick="closeRentModal()">×</button>
+            <div class="modal-header">
+                <h2>АРЕНДА АККАУНТА</h2>
             </div>
-            
-            <div class="form-group">
-                <label>Ваше имя:</label>
-                <input type="text" id="buyerName" placeholder="Как к вам обращаться?" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Telegram для связи:</label>
-                <input type="text" id="buyerTelegram" placeholder="@username" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Ваш вопрос или комментарий:</label>
-                <textarea id="buyerComment" placeholder="Задайте вопрос о аккаунте..." 
-                         style="width: 100%; padding: 12px; background: #333; border: 2px solid #444; 
-                                border-radius: 8px; color: white; min-height: 100px;"></textarea>
-            </div>
-            
-            <button class="submit-btn" onclick="sendPurchaseRequest()">
-                📲 Написать в @ManeraSale
-            </button>
-            
-            <div style="margin-top: 20px; padding: 15px; background: #333; border-radius: 8px; text-align: center;">
-                <p style="color: #aaa; font-size: 14px;">
-                    ⚠️ Аккаунт продаётся полностью. После покупки вы получите:<br>
-                    • Полный доступ к аккаунту<br>
-                    • Смену данных (почта, пароль)<br>
-                    • Гарантию безопасности
-                </p>
+            <div class="modal-body">
+                <form id="rentForm">
+                    <div class="form-group">
+                        <label>Выбранный аккаунт</label>
+                        <input type="text" id="modalAccount" class="form-control" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Период аренды</label>
+                        <select id="rentalPeriod" class="form-control" onchange="calculatePrice()">
+                            <option value="4">4 часа</option>
+                            <option value="6">6 часов</option>
+                            <option value="12">12 часов</option>
+                            <option value="24">24 часа (1 день)</option>
+                            <option value="72">72 часа (3 дня)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Итого к оплате</label>
+                        <input type="text" id="totalPrice" class="form-control" readonly style="font-size: 24px; font-weight: bold; color: var(--gold);">
+                    </div>
+                    
+                    <button type="button" class="btn btn-gold" onclick="submitRent()" style="padding: 20px; font-size: 18px;">
+                        <i class="fab fa-telegram"></i> ПЕРЕЙТИ В TELEGRAM
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-    
+
+    <!-- Модальное окно покупки -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePurchaseModal()">×</button>
+            <div class="modal-header">
+                <h2>ПОКУПКА ПРЕМИУМ АККАУНТА</h2>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; color: var(--gold); font-weight: bold;">89.999₽</div>
+                    <p style="color: #aaa; margin-top: 10px;">Ultimate Collector Edition</p>
+                </div>
+                
+                <button class="btn btn-gold" onclick="openTelegramPurchase()" style="padding: 20px; font-size: 18px; margin-bottom: 20px;">
+                    <i class="fab fa-telegram"></i> НАПИСАТЬ В @ManeraSale
+                </button>
+                
+                <div style="background: var(--gray); padding: 20px; border-radius: 15px;">
+                    <h4 style="color: var(--gold); margin-bottom: 15px;">Что входит:</h4>
+                    <ul style="color: #ccc; line-height: 1.8; padding-left: 20px;">
+                        <li>Полная передача аккаунта</li>
+                        <li>Смена всех данных (почта, пароль)</li>
+                        <li>Гарантия безопасности</li>
+                        <li>Пожизненная поддержка</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Функции для премиум аккаунта
-        function openPurchaseModal() {
-            document.getElementById('purchaseModal').classList.add('active');
-        }
+        // Данные для расчёта цен
+        const accountPrices = {
+            'LEGENDARY': 500,
+            'MYTHIC PRO': 400,
+            'VIP COLLECTION': 300
+        };
         
-        function closePurchaseModal() {
-            document.getElementById('purchaseModal').classList.remove('active');
-        }
+        let currentAccount = '';
+        let currentDailyPrice = 0;
         
-        function sendPurchaseRequest() {
-            const name = document.getElementById('buyerName').value;
-            const telegram = document.getElementById('buyerTelegram').value;
-            const comment = document.getElementById('buyerComment').value;
+        // Открытие модалки аренды
+        function openRentModal(account, price) {
+            currentAccount = account;
+            currentDailyPrice = price;
             
-            if (!name || !telegram) {
-                alert('Пожалуйста, заполните имя и Telegram');
-                return;
+            document.getElementById('modalAccount').value = account;
+            document.getElementById('rentModal').style.display = 'flex';
+            calculatePrice();
+        }
+        
+        // Закрытие модалки аренды
+        function closeRentModal() {
+            document.getElementById('rentModal').style.display = 'none';
+        }
+        
+        // Расчёт цены
+        function calculatePrice() {
+            const period = parseInt(document.getElementById('rentalPeriod').value);
+            let total;
+            
+            if (period <= 24) {
+                // Почасовая аренда
+                total = (currentDailyPrice / 24) * period * 1.2;
+            } else {
+                // На несколько дней
+                total = currentDailyPrice * (period / 24) * 0.9;
             }
             
-            const message = `🛒 ЗАПРОС НА ПОКУПКУ ПРЕМИУМ АККАУНТА\n\n` +
-                           `👤 Имя: ${name}\n` +
-                           `📱 Telegram: ${telegram}\n` +
-                           `💬 Вопрос: ${comment || 'Нет комментария'}\n\n` +
-                           `💰 Аккаунт за 89.999₽`;
+            document.getElementById('totalPrice').value = Math.round(total) + '₽';
+        }
+        
+        // Отправка заявки на аренду
+        function submitRent() {
+            const period = document.getElementById('rentalPeriod').value;
+            const total = document.getElementById('totalPrice').value;
             
-            const encodedMessage = encodeURIComponent(message);
-            const telegramLink = `https://t.me/ManeraSale?text=${encodedMessage}`;
+            const message = `🎮 ЗАЯВКА НА АРЕНДУ\n\n` +
+                           `Аккаунт: ${currentAccount}\n` +
+                           `Период: ${period} часов\n` +
+                           `Сумма: ${total}\n\n` +
+                           `Сайт: Manera Rent`;
             
+            const telegramLink = `https://t.me/ManeraSale?text=${encodeURIComponent(message)}`;
+            window.open(telegramLink, '_blank');
+            closeRentModal();
+        }
+        
+        // Открытие модалки покупки
+        function openPurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'flex';
+        }
+        
+        // Закрытие модалки покупки
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+        
+        // Покупка через Telegram
+        function openTelegramPurchase() {
+            const message = `💰 ЗАПРОС НА ПОКУПКУ\n\n` +
+                           `Аккаунт: Ultimate Collector\n` +
+                           `Цена: 89.999₽\n\n` +
+                           `Хочу купить этот аккаунт!`;
+            
+            const telegramLink = `https://t.me/ManeraSale?text=${encodeURIComponent(message)}`;
             window.open(telegramLink, '_blank');
             closePurchaseModal();
-            
-            alert('Запрос на покупку отправлен! Откройте Telegram для связи с менеджером.');
         }
         
-        // Функция аренды аккаунта 132
-        function rentAccount132(hours) {
-            const prices = {
-                4: { rub: 249, uah: 200 },
-                6: { rub: 349, uah: 265 },
-                12: { rub: 649, uah: 500 },
-                24: { rub: 899, uah: 675 },
-                'night': { rub: 399, uah: 300 }
-            };
-            
-            let priceInfo;
-            let timeText;
-            
-            if (hours === 'night') {
-                priceInfo = prices.night;
-                timeText = 'Ночной тариф (21:00-10:00 МСК)';
-            } else {
-                priceInfo = prices[hours];
-                timeText = `${hours} часа`;
+        // Закрытие модалок при клике вне окна
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
             }
-            
-            const message = `🎮 АРЕНДА АККАУНТА №132\n\n` +
-                           `⏱️ Период: ${timeText}\n` +
-                           `💰 Сумма: ${priceInfo.rub}₽ / ${priceInfo.uah}грн\n\n` +
-                           `✅ Подтверждаю аренду`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const telegramLink = `https://t.me/ManeraSale?text=${encodedMessage}`;
-            
-            window.open(telegramLink, '_blank');
         }
         
-        // Добавляем кнопки аренды для аккаунта 132
-        document.addEventListener('DOMContentLoaded', function() {
-            const tariffs = document.querySelectorAll('.tariff-card');
-            tariffs.forEach(tariff => {
-                tariff.style.cursor = 'pointer';
-                tariff.addEventListener('click', function() {
-                    const time = this.querySelector('.tariff-time').textContent;
-                    let hours;
-                    
-                    if (time.includes('4 часа')) hours = 4;
-                    else if (time.includes('6 часа')) hours = 6;
-                    else if (time.includes('12 часов')) hours = 12;
-                    else if (time.includes('24 часа')) hours = 24;
-                    else if (time.includes('Ночной')) hours = 'night';
-                    else return;
-                    
-                    rentAccount132(hours);
-                });
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
         
-        // Закрытие модальных окон
-        window.onclick = function(event) {
-            const purchaseModal = document.getElementById('purchaseModal');
-            if (event.target === purchaseModal) {
-                closePurchaseModal();
-            }
-            
-            const rentModal = document.getElementById('rentModal');
-            if (event.target === rentModal) {
-                closeModal();
-            }
-        }
+        // Анимация при скролле
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+        
+        // Наблюдаем за карточками
+        document.querySelectorAll('.account-card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>

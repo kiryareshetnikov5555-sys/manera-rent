@@ -1,151 +1,153 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vortex AI — Ultimate Experience</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Баня vs Комары</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg-dark:#0c0c12;
-  --primary:#ff4ec4;
-  --secondary:#00f5ff;
-  --accent:#ff9900;
-  --glass:rgba(255,255,255,0.08);
-  --border:rgba(255,255,255,0.2);
-  --text:#ffffff;
-  --text-muted:#a0a0b0;
+    --bg-dark:#0b0b0f;
+    --primary:#ff6b6b;
+    --secondary:#4ecdc4;
+    --accent:#ffe66d;
+    --glass:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.2);
+    --text:#ffffff;
+    --text-muted:#a0a0b0;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;scroll-behavior:smooth;}
 body{background:var(--bg-dark);color:var(--text);overflow-x:hidden;}
-nav{position:fixed;width:100%;backdrop-filter:blur(20px);background:rgba(12,12,18,0.6);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid var(--border);}
+nav{position:fixed;width:100%;backdrop-filter:blur(15px);background:rgba(11,11,15,0.7);padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid var(--border);}
 nav h1{font-weight:800;background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-nav ul{list-style:none;display:flex;gap:30px;}
+nav ul{list-style:none;display:flex;gap:20px;}
 nav ul li a{color:var(--text-muted);text-decoration:none;transition:0.3s;}
 nav ul li a:hover{color:white;}
-
-.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-.hero h2{font-size:72px;font-weight:900;background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeIn 1.5s ease forwards;}
-.hero p{margin-top:20px;font-size:20px;color:var(--text-muted);animation:fadeIn 2s ease forwards;}
-.btn-primary{margin-top:40px;padding:16px 40px;border-radius:50px;background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:white;font-weight:600;cursor:pointer;transition:0.4s;}
-.btn-primary:hover{transform:scale(1.1);box-shadow:0 0 30px var(--primary);}
-
-.features{padding:150px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;}
-.card{padding:40px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;transition:0.4s;}
-.card:hover{transform:translateY(-10px);box-shadow:0 20px 60px rgba(0,0,0,0.6);}
-.card h3{margin-bottom:15px;font-size:22px;}
+section{padding:120px 60px;position:relative;}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#0b0b0f,#1f1f25);}
+.hero h2{font-size:60px;font-weight:900;background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:fadeIn 1.5s ease forwards;}
+.hero p{font-size:20px;color:var(--text-muted);margin-bottom:30px;}
+.btn-primary{padding:16px 40px;border-radius:50px;background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:white;font-weight:600;cursor:pointer;transition:0.4s;}
+.btn-primary:hover{transform:scale(1.1);box-shadow:0 0 25px var(--primary);}
+.tabs{display:flex;gap:20px;flex-wrap:wrap;margin-top:40px;}
+.tab-link{padding:12px 24px;background:var(--glass);border-radius:15px;border:1px solid var(--border);cursor:pointer;transition:0.3s;color:var(--text-muted);text-decoration:none;}
+.tab-link:hover{background:var(--secondary);color:#0b0b0f;transform:scale(1.05);}
+.card{background:var(--glass);padding:30px;border-radius:20px;border:1px solid var(--border);margin-top:30px;transition:0.4s;}
+.card:hover{transform:translateY(-10px);box-shadow:0 15px 50px rgba(0,0,0,0.6);}
+.card h3{margin-bottom:15px;}
 .card p{color:var(--text-muted);}
-
-.parallax{height:80vh;background:url('https://images.unsplash.com/photo-1621922630596-9b733f92e52d?auto=format&fit=crop&w=2000&q=80') center/cover fixed;display:flex;align-items:center;justify-content:center;}
-.parallax h2{font-size:60px;background:rgba(0,0,0,0.6);padding:20px 40px;border-radius:20px;}
-
-.pricing{padding:150px 60px;text-align:center;}
-.pricing-container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
-.price-card{background:var(--glass);padding:50px;border-radius:20px;width:300px;transition:0.4s;border:1px solid var(--border);}
-.price-card:hover{transform:scale(1.05);}
-.price-card h3{margin-bottom:10px;}
-.price-card h2{margin-bottom:15px;}
-.price-card p{color:var(--text-muted);}
-
 footer{padding:60px;text-align:center;border-top:1px solid var(--border);color:var(--text-muted);}
-
-/* Particle Canvas */
-#particles-js{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
-
-/* Animations */
 @keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:768px){.hero h2{font-size:42px;}nav{padding:20px;}}
+@media(max-width:768px){.hero h2{font-size:42px;}nav{padding:15px 20px;}}
 </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
-
 <nav>
-    <h1>Vortex AI</h1>
+    <h1>Баня vs Комары</h1>
     <ul>
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Возможности</a></li>
-        <li><a href="#">Цены</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#tips">Советы</a></li>
+        <li><a href="#products">Продукты</a></li>
+        <li><a href="#myths">Мифы</a></li>
+        <li><a href="#contact">Контакты</a></li>
     </ul>
 </nav>
 
-<section class="hero">
+<section id="hero" class="hero">
     <div>
-        <h2>AI Reimagined</h2>
-        <p>Самая мощная AI-платформа 2026 года. Скорость, дизайн, интеллект.</p>
-        <button class="btn-primary">Попробовать сейчас</button>
+        <h2>Добро пожаловать в баню без комаров!</h2>
+        <p>Лучшие способы насладиться паром и защититься от комаров одновременно.</p>
+        <a href="#tips" class="btn-primary">Узнать советы</a>
     </div>
 </section>
 
-<section class="features">
-    <div class="card">
-        <h3>⚡ Lightning Speed</h3>
-        <p>Молниеносная обработка данных в реальном времени.</p>
+<section id="tips">
+    <h2>Советы для комфортной бани</h2>
+    <div class="tabs">
+        <a href="#tip1" class="tab-link">Совет 1</a>
+        <a href="#tip2" class="tab-link">Совет 2</a>
+        <a href="#tip3" class="tab-link">Совет 3</a>
+        <a href="#tip4" class="tab-link">Совет 4</a>
     </div>
-    <div class="card">
-        <h3>🧠 Neural Core</h3>
-        <p>Самообучающаяся нейросеть с квантовой оптимизацией.</p>
+    <div id="tip1" class="card">
+        <h3>Используйте эфирные масла</h3>
+        <p>Масла эвкалипта, лаванды и цитрусовых отпугивают комаров и делают баню ароматной.</p>
     </div>
-    <div class="card">
-        <h3>🔐 Secure Layer</h3>
-        <p>Высочайший уровень защиты и шифрования.</p>
+    <div id="tip2" class="card">
+        <h3>Закрывайте окна и двери</h3>
+        <p>Создайте герметичное пространство, чтобы пар оставался, а комары не попадали внутрь.</p>
     </div>
-    <div class="card">
-        <h3>🌈 Smart UX</h3>
-        <p>Интуитивный интерфейс с анимациями и адаптивностью.</p>
+    <div id="tip3" class="card">
+        <h3>Сетки и москитные шторы</h3>
+        <p>Простое решение для защиты от комаров без химии.</p>
+    </div>
+    <div id="tip4" class="card">
+        <h3>Контрастные процедуры</h3>
+        <p>Чередование пара и прохлады отпугивает насекомых естественным образом.</p>
     </div>
 </section>
 
-<section class="parallax">
-    <h2>Feel the Power</h2>
+<section id="products">
+    <h2>Продукты для защиты</h2>
+    <div class="tabs">
+        <a href="#prod1" class="tab-link">Эфирные масла</a>
+        <a href="#prod2" class="tab-link">Москитные шторы</a>
+        <a href="#prod3" class="tab-link">Свечи с цитрусовым ароматом</a>
+        <a href="#prod4" class="tab-link">Специальные венички</a>
+    </div>
+    <div id="prod1" class="card">
+        <h3>Эфирные масла</h3>
+        <p>Натуральная защита и ароматизация. Можно купить онлайн или приготовить самому.</p>
+    </div>
+    <div id="prod2" class="card">
+        <h3>Москитные шторы</h3>
+        <p>Простая защита окон и дверей от комаров, не мешает вентиляции.</p>
+    </div>
+    <div id="prod3" class="card">
+        <h3>Свечи</h3>
+        <p>Цитрусовые и лавандовые свечи отпугивают насекомых и создают уют.</p>
+    </div>
+    <div id="prod4" class="card">
+        <h3>Венички с травами</h3>
+        <p>С травами, отпугивающими комаров, делают баню ароматной и безопасной.</p>
+    </div>
 </section>
 
-<section class="pricing">
-    <h2 style="margin-bottom:60px;">Тарифы</h2>
-    <div class="pricing-container">
-        <div class="price-card">
-            <h3>Starter</h3>
-            <h2>$19</h2>
-            <p>Базовые возможности</p>
-        </div>
-        <div class="price-card">
-            <h3>Pro</h3>
-            <h2>$49</h2>
-            <p>Продвинутый AI</p>
-        </div>
-        <div class="price-card">
-            <h3>Enterprise</h3>
-            <h2>$199</h2>
-            <p>Полный контроль</p>
-        </div>
+<section id="myths">
+    <h2>Мифы о бане и комарах</h2>
+    <div class="tabs">
+        <a href="#myth1" class="tab-link">Миф 1</a>
+        <a href="#myth2" class="tab-link">Миф 2</a>
+        <a href="#myth3" class="tab-link">Миф 3</a>
+    </div>
+    <div id="myth1" class="card">
+        <h3>Комары любят пар</h3>
+        <p>На самом деле, высокая температура и влажность отпугивает большинство комаров.</p>
+    </div>
+    <div id="myth2" class="card">
+        <h3>Только химия помогает</h3>
+        <p>Эфирные масла и натуральные методы работают не хуже.</p>
+    </div>
+    <div id="myth3" class="card">
+        <h3>Комары не в зимней бане</h3>
+        <p>Даже в холодное время года в сырых помещениях комары могут появиться.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Контакты и ссылки</h2>
+    <div class="tabs">
+        <a href="https://ru.wikipedia.org/wiki/Баня" target="_blank" class="tab-link">Википедия о бане</a>
+        <a href="https://ru.wikipedia.org/wiki/Комары" target="_blank" class="tab-link">Википедия о комарах</a>
+        <a href="https://www.youtube.com/results?search_query=баня+от+комаров" target="_blank" class="tab-link">Видео на YouTube</a>
+        <a href="https://www.amazon.com/s?k=mosquito+repellent+essential+oils" target="_blank" class="tab-link">Купить масла</a>
     </div>
 </section>
 
 <footer>
-    © 2026 Vortex AI. All rights reserved.
+    © 2026 Баня vs Комары. Все права защищены.
 </footer>
 
-<!-- Particles.js -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-particlesJS("particles-js", {
-  "particles": {
-    "number": { "value":80, "density":{"enable":true,"value_area":800} },
-    "color":{"value":"#ffffff"},
-    "shape":{"type":"circle"},
-    "opacity":{"value":0.5,"random":true},
-    "size":{"value":3,"random":true},
-    "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.2,"width":1},
-    "move":{"enable":true,"speed":2,"direction":"none","random":false,"straight":false,"out_mode":"out"}
-  },
-  "interactivity": {
-    "detect_on":"canvas",
-    "events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}}
-  },
-  "retina_detect":true
-});
-</script>
 </body>
 </html>
